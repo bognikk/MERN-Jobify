@@ -6,7 +6,7 @@ import "./Landing.scss";
 
 function Landing() {
 	return (
-		<section className="landing">
+		<section className="landingPage">
 			<nav>
 				<Logo />
 			</nav>
