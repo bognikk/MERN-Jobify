@@ -4,7 +4,6 @@ import "./HomeLayout.scss";
 function HomeLayout() {
 	return (
 		<div>
-			<nav>navbar</nav>
 			<Outlet />
 		</div>
 	);
