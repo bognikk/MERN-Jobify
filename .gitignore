@@ -127,8 +127,8 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-back/uploads
-
 nodemon.json
 
-front/build
+FRONT/build
+FRONT/README.md
+

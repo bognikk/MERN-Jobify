@@ -1,4 +1,5 @@
 import Logo from "../UI/Logo/Logo";
+import LogoutContainer from "../LogoutContainer/LogoutContainer";
 
 import { FaAlignLeft } from "react-icons/fa";
 import "./Navbar.scss";
@@ -16,7 +17,9 @@ const Navbar = () => {
 					<Logo />
 					<h4 className="logo-text">dashboard</h4>
 				</div>
-				<div className="btn-container">toggle/logout</div>
+				<div className="btn-container">
+					<LogoutContainer />
+				</div>
 			</div>
 		</nav>
 	);
