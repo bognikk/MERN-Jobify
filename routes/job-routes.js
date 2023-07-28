@@ -7,11 +7,10 @@ import {
 	createJob,
 	updateJob,
 	deleteJob,
-} from "../controllers/job-controller.js";
+} from "../controllers/job-controllers.js";
 
 // router.get('/', getAllJobs),
 // router.post('/', createJob)
-
 router.route("/").get(getAllJobs).post(createJob);
 router.route("/:id").get(getJob).patch(updateJob).delete(deleteJob);
 

@@ -3,9 +3,10 @@ dotenv.config();
 import express from "express";
 const app = express();
 import morgan from "morgan";
+import mongoose from "mongoose";
 
 // routers
-import jobRouter from "./routes/job-router.js";
+import jobRoutes from "./routes/job-routes.js";
 
 if (process.env.NODE_ENV === "development") {
 	app.use(morgan("dev"));
@@ -13,7 +14,7 @@ if (process.env.NODE_ENV === "development") {
 
 app.use(express.json());
 
-app.use("/api/v1/jobs", jobRouter);
+app.use("/api/v1/jobs", jobRoutes);
 
 app.use("*", (req, res) => {
 	res.status(404).json({ msg: "not found" });
@@ -26,6 +27,12 @@ app.use((err, req, res, next) => {
 
 const port = process.env.PORT || 5100;
 
-app.listen(port, () => {
-	console.log(`server running on PORT ${port}`);
-});
+try {
+	await mongoose.connect(process.env.MONGO_URL);
+	app.listen(port, () => {
+		console.log(`server running on PORT ${port}`);
+	});
+} catch (error) {
+	console.log(error);
+	process.exit(1);
+}
