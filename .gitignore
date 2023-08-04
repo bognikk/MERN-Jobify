@@ -128,7 +128,3 @@ dist
 .pnp.*
 
 nodemon.json
-
-FRONT/build
-FRONT/README.md
-
