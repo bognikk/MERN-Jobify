@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import Job from "../models/job-model.js";
 import User from "../models/user-model.js";
 
+// VALIDATE VALUE
 const withValidationErrors = (validateValues) => {
 	return [
 		validateValues,
@@ -22,6 +23,7 @@ const withValidationErrors = (validateValues) => {
 	];
 };
 
+// VALIDATE JOB
 export const validateJobInput = withValidationErrors([
 	body("company").notEmpty().withMessage("company is required"),
 	body("position").notEmpty().withMessage("position is required"),
@@ -32,6 +34,7 @@ export const validateJobInput = withValidationErrors([
 	body("jobType").isIn(Object.values(JOB_TYPE)).withMessage("invalid job type"),
 ]);
 
+// VALIDATE PARAM ID
 export const validateIdParam = withValidationErrors([
 	param("id").custom(async (value) => {
 		const isValidId = mongoose.Types.ObjectId.isValid(value);
@@ -45,6 +48,7 @@ export const validateIdParam = withValidationErrors([
 	}),
 ]);
 
+// VALIDATE REGISTER
 export const validateRegisterInput = withValidationErrors([
 	body("name").notEmpty().withMessage("name is required"),
 	body("email")
@@ -65,4 +69,14 @@ export const validateRegisterInput = withValidationErrors([
 		.withMessage("password must be at least 8 characters long"),
 	body("location").notEmpty().withMessage("location is required"),
 	body("lastName").notEmpty().withMessage("last name is required"),
+]);
+
+// VALIDATE LOGIN
+export const validateLoginInput = withValidationErrors([
+	body("email")
+		.notEmpty()
+		.withMessage("email is required")
+		.isEmail()
+		.withMessage("invalid email format"),
+	body("password").notEmpty().withMessage("password is required"),
 ]);
