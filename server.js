@@ -12,6 +12,7 @@ import authRoutes from "./routes/auth-routes.js";
 
 // middleware
 import errorHandlerMiddleware from "./middleware/error-handler.js";
+import { authenticateUser } from "./middleware/auth.js";
 
 if (process.env.NODE_ENV === "development") {
 	app.use(morgan("dev"));
@@ -19,7 +20,7 @@ if (process.env.NODE_ENV === "development") {
 
 app.use(express.json());
 
-app.use("/api/v1/jobs", jobRoutes);
+app.use("/api/v1/jobs", authenticateUser, jobRoutes);
 app.use("/api/v1/auth", authRoutes);
 
 app.use("*", (req, res) => {
